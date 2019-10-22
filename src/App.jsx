@@ -5,7 +5,7 @@ import Unsplash, { toJson } from "unsplash-js";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [string, setString] = useState("");
+  const [string, setString] = useState("hello");
 
   useEffect(() => {
     const unsplash = new Unsplash({
@@ -14,7 +14,7 @@ function App() {
     });
 
     unsplash.search
-      .photos({ string })
+      .photos(string)
       .then(toJson)
       .then(json => {
         console.log(json);
