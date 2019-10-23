@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import InputBlock from "./components/InputBlock";
 
 function App() {
-  const [string, setString] = useState("hello");
+  const [string, setString] = useState("");
 
   useEffect(() => {
     const unsplash = new Unsplash({
@@ -24,6 +24,10 @@ function App() {
     console.log({ string });
   });
 
+  const handler = val => {
+    setString(val)
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -31,8 +35,9 @@ function App() {
           src="https://source.unsplash.com/collection/190727/1600x900"
           width="20%"
         />
-        <p>Вы хотите найти фотографии {string}</p>
-        <InputBlock updateData={setString} />
+        <InputBlock string={string} handler={handler}/>
+        <div>Parent State: {string}</div>
+
       </header>
     </div>
   );
