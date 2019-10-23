@@ -1,12 +1,15 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Unsplash, { toJson } from "unsplash-js";
 import { useState, useEffect } from "react";
+import Grid from "./components/Grid";
 import InputBlock from "./components/InputBlock";
 
+
 function App() {
-  const [string, setString] = useState("");
+  const [string, setString] = useState("sky");
+  const [images, setImages] = useState([]);
+
 
   useEffect(() => {
     const unsplash = new Unsplash({
@@ -18,14 +21,12 @@ function App() {
       .photos(string)
       .then(toJson)
       .then(json => {
-        console.log(json);
+        setImages(json)
       });
-
-    console.log({ string });
   });
 
-  const handler = val => {
-    setString(val)
+  const handler = e => {
+    setString(e.target.value);
   };
 
   return (
@@ -36,7 +37,9 @@ function App() {
           width="20%"
         />
         <InputBlock string={string} handler={handler}/>
-        <div>Parent State: {string}</div>
+        <Grid images={images}/>
+        <div>Parent State: {string}       
+</div>
 
       </header>
     </div>
