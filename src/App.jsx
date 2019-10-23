@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Unsplash, { toJson } from "unsplash-js";
 import { useState, useEffect } from "react";
+import InputBlock from "./components/InputBlock";
 
 function App() {
   const [string, setString] = useState("hello");
@@ -31,12 +32,7 @@ function App() {
           width="20%"
         />
         <p>Вы хотите найти фотографии {string}</p>
-        <input
-          type="text"
-          placeholder="enter your search query"
-          onChange={e => setString(e.target.value)}
-        />
-        <button>submit</button>
+        <InputBlock updateData={setString} />
       </header>
     </div>
   );
