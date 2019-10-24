@@ -5,11 +5,9 @@ import { useState, useEffect } from "react";
 import Grid from "./components/Grid";
 import InputBlock from "./components/InputBlock";
 
-
 function App() {
   const [string, setString] = useState("sky");
   const [images, setImages] = useState([]);
-
 
   useEffect(() => {
     const unsplash = new Unsplash({
@@ -21,9 +19,11 @@ function App() {
       .photos(string)
       .then(toJson)
       .then(json => {
-        setImages(json.results)
+        setTimeout(() => {
+          setImages(json.results);
+        }, 2000);
       });
-  });
+  }, images);
 
   const handler = e => {
     setString(e.target.value);
@@ -36,11 +36,9 @@ function App() {
           src="https://source.unsplash.com/collection/190727/1600x900"
           width="20%"
         />
-        <InputBlock string={string} handler={handler}/>
-        <Grid images={images}/>
-        <div>Parent State: {string}       
-    </div>
-
+        <InputBlock string={string} handler={handler} />
+        <Grid images={images} />
+        <div>Parent State: {string}</div>
       </header>
     </div>
   );
