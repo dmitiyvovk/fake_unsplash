@@ -21,7 +21,7 @@ function App() {
       .photos(string)
       .then(toJson)
       .then(json => {
-        setImages(json)
+        setImages(json.results)
       });
   });
 
@@ -39,7 +39,7 @@ function App() {
         <InputBlock string={string} handler={handler}/>
         <Grid images={images}/>
         <div>Parent State: {string}       
-</div>
+    </div>
 
       </header>
     </div>
