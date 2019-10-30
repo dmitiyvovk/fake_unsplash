@@ -5,9 +5,10 @@ function Grid(props) {
     alt: val.alt_description,
     url: val.urls.full
   }));
-  console.log(props.images);
+  // console.log(props);
   return (
     <div
+      className="paragraph"
       style={{
         marginTop: "20px",
         padding: "10px",
@@ -15,7 +16,14 @@ function Grid(props) {
       }}
     >
       {imageUrls.map(val => (
-        <p style={{ fontSize: "12px" }}>{val.alt}</p>
+        <div>
+          {/* <p 
+          style={{ fontSize: "12px" }} 
+          >
+          {val.alt}
+          </p> */}
+          <img src={val.url} style={{ width: "20%" }} />
+        </div>
       ))}
     </div>
   );
