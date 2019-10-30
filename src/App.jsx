@@ -9,6 +9,7 @@ import Faker from "faker";
 function App() {
   const [string, setString] = useState(Faker.hacker.noun());
   const [images, setImages] = useState([]);
+  const [query, setQuery] = useState(string);
 
   useEffect(() => {
     const unsplash = new Unsplash({
@@ -17,7 +18,7 @@ function App() {
     });
 
     unsplash.search
-      .photos(string)
+      .photos(query)
       .then(toJson)
       .then(json => {
         setTimeout(() => {
@@ -30,6 +31,11 @@ function App() {
     setString(e.target.value);
   };
 
+  const clickHandler = e => {
+    e.preventDefault();
+    setQuery(string);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -37,7 +43,11 @@ function App() {
           src="https://source.unsplash.com/collection/190727/1600x900"
           width="20%"
         />
-        <InputBlock string={string} handler={handler} />
+        <InputBlock
+          string={string}
+          handler={handler}
+          clickHandler={clickHandler}
+        />
         <Grid images={images} />
         <div>Parent State: {string}</div>
       </header>
