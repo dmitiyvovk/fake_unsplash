@@ -4,9 +4,10 @@ import Unsplash, { toJson } from "unsplash-js";
 import { useState, useEffect } from "react";
 import Grid from "./components/Grid";
 import InputBlock from "./components/InputBlock";
+import Faker from "faker";
 
 function App() {
-  const [string, setString] = useState("sky");
+  const [string, setString] = useState(Faker.hacker.noun());
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function App() {
           setImages(json.results);
         }, 2000);
       });
-  }, images);
+  }, [images]);
 
   const handler = e => {
     setString(e.target.value);
