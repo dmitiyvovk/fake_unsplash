@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Grid from "./components/Grid";
 import InputBlock from "./components/InputBlock";
 import Faker from "faker";
-
+import Testing from "./components/Testing";
 
 function App() {
   const [string, setString] = useState(Faker.hacker.noun());
@@ -22,9 +22,7 @@ function App() {
       .photos(query)
       .then(toJson)
       .then(json => {
-        setTimeout(() => {
-          setImages(json.results);
-        }, 2000);
+        setImages(json.results);
       });
   }, [images]);
 
@@ -52,6 +50,7 @@ function App() {
         <Grid images={images} />
         <div>Parent State: {string}</div>
       </header>
+      <Testing />
     </div>
   );
 }
