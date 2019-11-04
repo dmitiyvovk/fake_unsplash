@@ -1,4 +1,14 @@
 import React from "react";
+import styled from "styled-components";
+
+const Button = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
 
 function InputBlock(props) {
   return (
@@ -10,7 +20,7 @@ function InputBlock(props) {
         onChange={props.handler}
         value={props.string}
       />
-      <button onClick={props.clickHandler}>submit</button>
+      <Button onClick={props.clickHandler}>submit</Button>
     </div>
   );
 }

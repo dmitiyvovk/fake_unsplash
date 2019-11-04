@@ -6,6 +6,7 @@ import Grid from "./components/Grid";
 import InputBlock from "./components/InputBlock";
 import Faker from "faker";
 
+
 function App() {
   const [string, setString] = useState(Faker.hacker.noun());
   const [images, setImages] = useState([]);
