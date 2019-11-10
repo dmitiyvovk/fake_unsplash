@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 const Div = styled.div`
   color: blueviolet;
-  && div: {
-    border: 1px solid red;
-  }
 `;
 
 const list = [
@@ -28,21 +26,38 @@ const list = [
 ];
 
 function Testing() {
+  const numbers = [1, 2, 3, 4, 5];
+  const ListItems = numbers.map(x => <li key={x.toString()}>{x}</li>);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const onSearchChange = event => {
+    event.preventDefault();
+    setSearchTerm(event.target.value);
+  };
+
+  const isSearched = searchTerm => x =>
+    x.title.toLowerCase().includes(searchTerm.toLowerCase());
+
   return (
-    <Div className="App">
-      {list.map(x => {
-        return (
-          <div>
-            <span>
-              <a href={x.url}>{x.title}</a>
-            </span>
-            <span>{x.author}</span>
-            <span>{x.num_comments}</span>
-            <span>{x.poins}</span>
-          </div>
-        );
-      })}
-    </Div>
+    <div className="App">
+      <form>
+        <input type="text" onChange={onSearchChange} />
+      </form>
+      {list.filter(isSearched(searchTerm)).map(x => (
+        <div key={x.objectID}>
+          <span>
+            <a href={x.url}>{x.title}</a>
+          </span>
+          <span>{x.author}</span>
+          <span>{x.num_comments}</span>
+          <span>{x.poins}</span>
+          <button onClick={() => console.log(x.objectID)} type="button">
+            Dismiss
+          </button>
+        </div>
+      ))}
+      <ul>{ListItems}</ul>
+    </div>
   );
 }
 
